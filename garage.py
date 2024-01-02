@@ -1,45 +1,60 @@
 # Your parking gargage class should have the following methods:
 
 class Gargage():
-    def __init__(self, tickets, spots, rate):
-        self.tickets = tickets
-        self.spots = spots
+    def __init__(self, spaces, rate):
+        self.tickets = [str(x) for x in range (spaces)]
+        self.spots = [str(x) for x in range (spaces)]
         self.rate = rate
              
 # - takeTicket
-    def take_ticket(self, ticket):
-        self.tickets.remove(ticket)
+    def take_ticket(self):
+        if self.tickets:
+            ticket = self.tickets.pop()
+            print(f"you're ticket is {ticket}, remember your space!")
+            return ticket
+        else:
+            print('sorry, lot is full!')
+            return None
+        
     
 # submit ticket
-    def return_ticket(self, ticket):
-        self.tickets.append(ticket)
+def return_ticket(self, ticket):
+    self.tickets.append(ticket)
 
 # #remove 1 spot
-    def remove_spot(self, spot):
-        self.spots.remove(spot)
+def remove_spot(self, spot):
+    self.spots.pop(spot)
 # #empty spot
-    def free_spot(self, spot):
-        self.spots.append(spot)
+def free_spot(self, spot):
+    self.spots.append(spot)
 # # pay rate
-    def rate_amount(self):
-        print(self.rate)
+def rate_amount(self):
+    print(self.rate)
     
 
 # - This should decrease the amount of tickets available by 1
-ticket_machine = Gargage([])        
+ticket_machine = Gargage(15)        
 
 while True:
     user_choice = input('what would you like to do? park or pay? ').lower()
-    if user_choice in 'park':
-        item = input('take ticket').lower()
-        ticket_machine.take_ticket(ticket)
+    if user_choice == 'park':
+        spot = input('enter parking spot? ')
         ticket_machine.remove_spot(spot)
-
-    elif user_choice in 'pay':
-        item = ('Please pay.....')
-        ticket_machine.return_ticket(ticket)
-        ticket_machine.free_spot(spot)
+        print(f'parking spot {spot}')
+#function to lower ticket capacity and spots 
         
+    elif user_choice == 'pay':
+        ticket = input('Please enter your ticket number? ')
+        ticket_machine.return_ticket(ticket)
+        spot = input('enter your parking spot ')
+        ticket_machine.free_spot(spot)
+        print('thank you please exit the lot')
+    else:
+        print('invalid choice! pls enter park or pay ')
+        
+#function to display rate and free up a spot and ticket
+        
+#a way to tell it we are at full capacity
 
 
 
